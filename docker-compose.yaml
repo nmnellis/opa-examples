@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  bundle-api:
+    build:
+      context: ./bundle-api/
+      dockerfile: Dockerfile
+    command:
+      - "/opt/opa/bundle-api"
+      - "-storage-type=file"
+      - "-storage-path=/bundles"
+      - "-port=8080"
+      - "-host=0.0.0.0"
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./bundles:/bundles
+    networks:
+      opa:
+        aliases:
+          - bundle-api
+  opa:
+    image: openpolicyagent/opa:0.14.1
+    ports:
+      - 8181:8181
+    expose:
+      - "8181"
+    command:
+      - "run"
+      - "--server"
+      - "--config-file=/config/opa.yaml"
+      - "--addr=0.0.0.0:8181"
+      - "--log-level=error"
+    volumes:
+      - ./config:/config
+    networks:
+      - opa
+
+networks:
+  opa: {}

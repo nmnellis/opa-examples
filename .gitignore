@@ -1,0 +1,20 @@
+opa-examples
+# git history files
+.history_rewritten_*
+# Eclipse artifacts
+.project
+.pydevproject
+#Vagrant
+tools/vagrant/.vagrant/
+# Intellij
+*.iml
+.idea/
+# Visual Studio Code
+.vscode/
+# Bazel
+/bazel-*
+# vi backups
+*.bak
+debug
+.DS_Store
+__debug_bin

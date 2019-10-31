@@ -1,0 +1,35 @@
+{
+  "nick": {
+    "endpoints": [
+      {
+        "regex": ".*",
+        "methods": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  "torrin": {
+    "endpoints": [
+      {
+        "regex": "\/users\/(.*)\/",
+        "methods": [
+          "GET",
+          "POST",
+          "DELETE",
+          "PUT"
+        ]
+      }
+    ]
+  },
+  "bob": {
+    "endpoints": [
+      {
+        "regex": "\/users\/(.*)\/permissions\/(.*)\/",
+        "methods": [
+          "GET"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+services:
+  - name: bundle-api
+    url: http://bundle-api:8080/
+
+bundles:
+  access:
+    service: bundle-api
+    resource: data/bundle.tar.gz
+    polling:
+      min_delay_seconds: 10
+      max_delay_seconds: 20
+  endpoints:
+    service: bundle-api
+    resource: rego/bundle.tar.gz
+    polling:
+      min_delay_seconds: 10
+      max_delay_seconds: 20
