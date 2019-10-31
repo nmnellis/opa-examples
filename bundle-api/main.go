@@ -10,7 +10,7 @@ import (
 	"net/http"
 
 	"cloud.google.com/go/storage"
-	"github.com/nmnellis/opa-examples/download"
+	"github.com/nmnellis/opa-examples/bundle-api/download"
 )
 
 var (

@@ -1,4 +1,4 @@
-module github.com/nmnellis/opa-examples
+module github.com/nmnellis/opa-examples/bundle-api
 
 go 1.13
 
