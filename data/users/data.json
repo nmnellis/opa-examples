@@ -12,22 +12,12 @@
   "torrin": {
     "endpoints": [
       {
-        "regex": "\/users\/(.*)\/",
+        "regex": "^\/users\/([0-9]{1,})$",
         "methods": [
           "GET",
           "POST",
           "DELETE",
           "PUT"
-        ]
-      }
-    ]
-  },
-  "bob": {
-    "endpoints": [
-      {
-        "regex": "\/users\/(.*)\/permissions\/(.*)\/",
-        "methods": [
-          "GET"
         ]
       }
     ]
