@@ -1,6 +1,9 @@
 version: "3.7"
 services:
-  bundle-api:
+###################################
+## File bundle-api
+##################################
+  bundle-api-file:
     build:
       context: ./bundle-api/
       dockerfile: Dockerfile
@@ -19,8 +22,36 @@ services:
     networks:
       opa:
         aliases:
-          - bundle-api
+          - bundle-api-file
+###################################
+## GCP bundle-api
+## Requires service-account.json if private bucket
+##################################
+  # bundle-api-gcs:
+  #   build:
+  #     context: ./bundle-api/
+  #     dockerfile: Dockerfile
+  #   command:
+  #     - "/opt/opa/bundle-api"
+  #     - "-storage-type=gcs"
+  #     - "-storage-path=opa-example"
+  #     - "-port=8081"
+  #     - "-host=0.0.0.0"
+  #   environment:
+  #     - GOOGLE_APPLICATION_CREDENTIALS=/home/opa/.google/gcp.json
+  #   expose:
+  #     - "8081"
+  #   ports:
+  #     - "8081:8081"
+  #   volumes:
+  #     - /path/to/serviceaccount.json:/home/opa/.google/gcp.json
+  #   networks:
+  #     opa:
+  #       aliases:
+  #         - bundle-api-gcs
   opa:
+    depends_on:
+      - "bundle-api-file"
     image: openpolicyagent/opa:0.14.1
     ports:
       - 8181:8181
@@ -31,7 +62,7 @@ services:
       - "--server"
       - "--config-file=/config/opa.yaml"
       - "--addr=0.0.0.0:8181"
-      - "--log-level=error"
+      - "--log-level=info"
     volumes:
       - ./config:/config
     networks:

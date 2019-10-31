@@ -55,6 +55,7 @@ type GCSBundleDownloader struct {
 }
 
 func (d *GCSBundleDownloader) Download(path string) ([]byte, error) {
+	path = strings.TrimPrefix(path, "/")
 	objHandle := d.Client.Bucket(d.Bucket).Object(path)
 	reader, err := objHandle.NewReader(context.Background())
 	if err != nil {
@@ -68,6 +69,7 @@ func (d *GCSBundleDownloader) Download(path string) ([]byte, error) {
 }
 
 func (d *GCSBundleDownloader) GetETag(path string) (string, error) {
+	path = strings.TrimPrefix(path, "/")
 	objHandle := d.Client.Bucket(d.Bucket).Object(path)
 	// Get the attributes first
 	attrs, err := objHandle.Attrs(context.Background())
@@ -82,6 +84,7 @@ func (d *GCSBundleDownloader) GetETag(path string) (string, error) {
 	return attrs.Etag, nil
 }
 func (d *GCSBundleDownloader) Exists(path string) (bool, error) {
+	path = strings.TrimPrefix(path, "/")
 	objHandle := d.Client.Bucket(d.Bucket).Object(path)
 	// Get the attributes first
 	_, err := objHandle.Attrs(context.Background())

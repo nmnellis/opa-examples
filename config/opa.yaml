@@ -1,16 +1,18 @@
 services:
-  - name: bundle-api
-    url: http://bundle-api:8080/
+  - name: bundle-api-file
+    url: http://bundle-api-file:8080/
+  - name: bundle-api-gcs
+    url: http://bundle-api-gcs:8081/
 
 bundles:
   access:
-    service: bundle-api
+    service: bundle-api-file
     resource: data/bundle.tar.gz
     polling:
       min_delay_seconds: 10
       max_delay_seconds: 20
   endpoints:
-    service: bundle-api
+    service: bundle-api-file
     resource: rego/bundle.tar.gz
     polling:
       min_delay_seconds: 10

@@ -55,15 +55,18 @@ func bundlehandler(w http.ResponseWriter, r *http.Request) {
 	exists, err := bundleDownloader.Exists(file)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 	if !exists {
 		http.Error(w, fmt.Sprintf("file does not exist %v", file), http.StatusBadRequest)
+		return
 	}
 
 	revision := r.Header.Get("If-None-Match")
 	etag, err := bundleDownloader.GetETag(file)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 	w.Header().Set("Etag", etag)
 
