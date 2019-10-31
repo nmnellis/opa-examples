@@ -1,6 +1,6 @@
 # ![logo](https://github.com/open-policy-agent/opa/blob/master/logo/logo-144x144.png)  O.P.A Examples
 
-A collection of examples on how to use Open Policy Agent.
+A collection of examples on how to use [Open Policy Agent](https://www.openpolicyagent.org/).
 
 Included
 
@@ -13,13 +13,11 @@ Included
 - Live reloading of policies and data
 - GCS support for bundles
 
-## Policies and Data
+## [Policies and Data](https://www.openpolicyagent.org/docs/latest/policy-language/)
 
-## Testing Policies
+## [Testing Policies](https://www.openpolicyagent.org/docs/latest/policy-testing/)
 
-## Bundle API
-
-[O.P.A Bundle API](https://www.openpolicyagent.org/docs/latest/management/#bundles)
+## [Bundle API](https://www.openpolicyagent.org/docs/latest/management/#bundles)
 
 The bundle API is a great way to transport policies and data to your O.P.A server without having to use the HTTP API. The data is loaded into O.P.A in real time without requiring a restart. Caching can be implemented using the `Etag` header to prevent the same bundle from being downloaded. Having multiple bundles allows the user to separate data from the policies which might have different development flows. The bundle API can be configured in O.P.A as shown below.
 
